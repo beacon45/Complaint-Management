@@ -16,33 +16,43 @@
       }
       body {
           background-color: #080710;
+          overflow: hidden; /* Hide scrollbars */
       }
       .background {
-          width: 430px;
-          height: 520px;
+          width: 500px;
+          height: 600px;
           position: absolute;
           transform: translate(-50%, -50%);
           left: 50%;
           top: 50%;
       }
+      /* New Shapes - Question Mark and Star */
       .background .shape {
           height: 200px;
           width: 200px;
           position: absolute;
-          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 300px; /* Adjust font size for a similar scale */
+          color: rgba(255, 255, 255, 0.2); /* Light color for a subtle effect */
       }
-      .shape:first-child {
-          background: linear-gradient(#1845ad, #23a2f6);
-          left: -80px;
-          top: -80px;
+      .shape.question-mark {
+          left: -90px;
+          top: -25px;
+          color: #23a2f6; /* Text color for question mark */
+          font-weight: bold;
+          transform: rotate(35deg);
       }
-      .shape:last-child {
-          background: linear-gradient(to right, #ff512f, #f09819);
+      .shape.star {
           right: -30px;
           bottom: -80px;
+          color: #f09819; /* Text color for star */
+          transform: rotate(45deg); /* Rotate to make it dynamic */
+          font-weight: bold;
       }
       form {
-          height: 650px; /* Increased height for additional field */
+          height: 700px; /* Adjusted height to accommodate all fields */
           width: 450px;
           background-color: rgba(255, 255, 255, 0.13);
           position: absolute;
@@ -74,7 +84,7 @@
           font-size: 16px;
           font-weight: 500;
       }
-      input, select { /* Added select for similar styling */
+      input, select { /* Styled similarly for consistency */
           display: block;
           height: 40px;
           width: 100%;
@@ -89,6 +99,8 @@
       select {
           appearance: none; /* Remove default styling */
           color: #ffffff; /* Text color */
+          background-color: rgba(255, 255, 255, 0.07); /* Ensure background matches inputs */
+          cursor: pointer;
       }
       select option {
           background-color: #080710; /* Background color for dropdown options */
@@ -98,7 +110,7 @@
           color: #e5e5e5;
       }
       button {
-          margin-top: 14px;
+          margin-top: 20px; /* Reduced margin-top for better spacing */
           width: 100%;
           background-color: #ffffff;
           color: #080710;
@@ -107,38 +119,48 @@
           font-weight: 600;
           border-radius: 5px;
           cursor: pointer;
+          transition: background-color 0.3s ease;
       }
-      .social {
-          margin-top: 30px;
-          display: flex;
+      button:hover {
+          background-color: #e0e0e0;
       }
-      .social div {
-          background: red;
-          width: 150px;
-          border-radius: 3px;
-          padding: 5px 10px 10px 5px;
-          background-color: rgba(255, 255, 255, 0.27);
-          color: #eaf0fb;
+      a {
+          color: #ffffff;
+          display: block;
           text-align: center;
+          margin-top: 20px;
+          text-decoration: none;
+          font-weight: 500;
       }
-      .social div:hover {
-          background-color: rgba(255, 255, 255, 0.47);
+      a:hover {
+          text-decoration: underline;
       }
-      .social .fb {
-          margin-left: 25px;
-      }
-      .social i {
-          margin-right: 4px;
+      /* Optional: Responsive Design */
+      @media (max-width: 500px) {
+          .background {
+              width: 300px;
+              height: 400px;
+          }
+          .background .shape {
+              height: 100px;
+              width: 100px;
+              font-size: 150px;
+          }
+          form {
+              width: 300px;
+              padding: 30px 20px;
+          }
       }
     </style>
 </head>
 <body>
     <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+        <!-- New Shapes for Background -->
+        <div class="shape question-mark">?</div>
+        <div class="shape star">*</div>
     </div>
     <form action="" method="post">
-        {% csrf_token %}  
+        {% csrf_token %}
         <h3>Signup Here</h3>
 
         <label for="username">Username</label>
