@@ -3,27 +3,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
-# from .forms import ComplaintForm
-# from .models import Complaint
-
-# @login_required
-# def submit_complaint(request):
-#     if request.method == 'POST':
-#         form = ComplaintForm(request.POST)
-#         if form.is_valid():
-#             complaint = form.save(commit=False)
-#             complaint.user = request.user  # Link the logged-in user to the complaint
-#             complaint.save()
-#             return redirect('complaint_success')  # Redirect after successful submission
-#     else:
-#         form = ComplaintForm()
-#     return render(request, 'submit_complaint.html', {'form': form})
-
-# def complaint_success(request):
-#     return render(request, 'complaint_success.html')
-
 # Create your views here.
 #It doesn't directly gives access to the user they had to login then will be directed
+from .forms import ComplaintForm
+
+def submit_complaint(request):
+    if request.method == 'POST':
+        form = ComplaintForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()  # Save the complaint to the database
+            return redirect('success')  # Redirect to a success page
+    else:
+        form = ComplaintForm()
+    return render(request, 'submit_complaint.html', {'form': form})
+
+def success(request):
+    return render(request, 'success.html')
+
+
 @login_required(login_url='login')
 def IndexPage(req):
     context = {

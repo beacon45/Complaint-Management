@@ -25,5 +25,6 @@ urlpatterns = [
     path('register/',views.RegistrationPage,name="register"),
     path('logout/',views.LogoutPage,name='logout'),
 
-    
+    path('submit/', views.submit_complaint, name='submit_complaint'),
+    path('success/', views.success, name='success'),
 ]
