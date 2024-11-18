@@ -7,6 +7,7 @@ class Complaint(models.Model):
     email = models.EmailField()
     phone=models.CharField(max_length=12)
     complaintText = models.TextField()
+    uploadFile=models.FileField(upload_to='files/')
     date=models.DateField()
 
     def __str__(self):
