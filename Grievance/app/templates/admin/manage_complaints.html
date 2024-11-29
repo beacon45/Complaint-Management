@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <title>Manage Complaints</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Manage Complaints</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Complaint ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint.id }}</td>
+                    <td>{{ complaint.name }}</td>
+                    <td>{{ complaint.email }}</td>
+                    <td>{{ complaint.department.name }}</td>
+                    <td>{{ complaint.status }}</td>
+                    <td>{{ complaint.priority }}</td>
+                    <td>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

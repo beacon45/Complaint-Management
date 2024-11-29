@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}List Complaints{% endblock %}
+{% block content %}
+    <h1>List of Complaints</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+            <tr>
+                <td>{{ complaint.name }}</td>
+                <td>{{ complaint.email }}</td>
+                <td>{{ complaint.department }}</td>
+                <td>{{ complaint.status }}</td>
+                <td>{{ complaint.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
