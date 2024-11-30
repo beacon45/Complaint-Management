@@ -65,11 +65,11 @@ def register_complaint(request):
 
 @login_required
 def list_complaints(request):
-    if request.user.is_staff:  # Admin view
+    if request.user.is_staff and hasattr(request.user, 'assigned_department'):  # Staff view
+        complaints = Complaint.objects.filter(department__in=request.user.assigned_department.all())
+    elif request.user.is_staff:  # Admin view
         complaints = Complaint.objects.all()
-    elif hasattr(request.user, 'department'):  # HOD view
-        complaints = Complaint.objects.filter(department=request.user.department)
-    else:  # User view
+    else:  # Regular user view
         complaints = Complaint.objects.filter(email=request.user.email)
     return render(request, 'app/list_complaints.html', {'complaints': complaints})
 
