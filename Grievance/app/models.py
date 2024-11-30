@@ -11,7 +11,7 @@ class Department(models.Model):
     hod = models.OneToOneField(
         User, null=True, blank=True, on_delete=models.SET_NULL, related_name='department_hod'
     )  # HOD for the department
-
+    employees = models.ManyToManyField(User, blank=True, related_name='assigned_department')
     def __str__(self):
         return self.name
 
