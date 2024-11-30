@@ -7,7 +7,8 @@ from .models import Complaint, Department, Category
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-
+    filter_horizontal = ('employees',)
+    
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
